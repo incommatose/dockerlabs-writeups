@@ -1,7 +1,5 @@
-#Dockerlabs #WriteUps 
 
-
->[!NOTE] Habilidades
+>[!NOTE] Habilidades: 
 > Brainfuck Decode, SUID Privilege Escalation
 
 ## Lanzar el laboratorio
@@ -22,7 +20,7 @@ systemctl start docker
 ./auto_deploy.sh aguademayo.tar
 ~~~
 
-
+![etc hosts](https://github.com/user-attachments/assets/6e7efbfd-fd04-4fce-b73f-889302bdbebf)
 
 
 # Reconocimiento
@@ -31,7 +29,7 @@ systemctl start docker
 
 Comprobamos que la máquina se encuentre activa en la `172.17.0.2`, por comodidad, agregaré esta dirección al archivo `/etc/hosts` con el nombre `aguademayo.local`
 
-![etc hosts](https://github.com/user-attachments/assets/2ab8dcbe-d2b2-432c-bc16-01fa3be04a01)
+
 
 ~~~ bash
 ping -c1 aguademayo.local
@@ -46,7 +44,7 @@ Haremos un primer escaneo por el protocolo TCP para descubrir si la máquina tie
 nmap --open -p- --min-rate 5000 -n -sS -v -Pn $ip -oG allPorts
 ~~~
 
-![first_nmap_scan](https://github.com/user-attachments/assets/a5da09d6-25f4-4453-88b8-2dd5b7da87bb)
+![first_nmap_scan](https://github.com/user-attachments/assets/49b10638-7878-43b7-a34f-0a7e3cb2abc2)
 
 - `--open`: Mostrar solamente los puertos abiertos
 - `-p-`: Escanear todo el rango de puertos (65535)
@@ -62,7 +60,7 @@ nmap --open -p- --min-rate 5000 -n -sS -v -Pn $ip -oG allPorts
 nmap -sVC -p 22,80 aguademayo.local -oN targeted
 ~~~
 
-![ports_scan](https://github.com/user-attachments/assets/5f118d18-5ca4-4a43-87f2-a169bd1188d0)
+![ports_scan](https://github.com/user-attachments/assets/ffb91eb8-6e7f-44cd-8927-ab8724c33796)
 
 
 ## Http Service
@@ -73,7 +71,7 @@ Vemos el puerto `80` que corresponde a un servicio `http`, veamos que hay en él
 whatweb http://172.17.0.2
 ~~~
 
-![web](https://github.com/user-attachments/assets/e35d7539-130c-4f02-be69-5e3c32baea02)
+![web](https://github.com/user-attachments/assets/970206d2-801c-41fc-9bc5-d82bae6a4533)
 
 ## Fuzzing
 
@@ -84,7 +82,7 @@ Lo siguiente que haremos será intentar descubrir posibles directorios existente
 wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200 http://aguademayo.local/FUZZ
 ~~~
 
-![wfuzz_fuzzing](https://github.com/user-attachments/assets/39c55290-aa90-4f2d-8b21-c834a4b3a4c7)
+![wfuzz_fuzzing](https://github.com/user-attachments/assets/118a1b0f-c47e-43e7-b0ae-481a9c397ec7)
 
 - `-c`: Formato colorizado
 - `--hc=404`: Ocultar el código de estado 404 (No encontrado)
@@ -97,7 +95,7 @@ wfuzz -c --hc=404 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.
 gobuster dir -u http://aguademayo.local -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -t 200
 ~~~
 
-![gobuster fuzzing](https://github.com/user-attachments/assets/6061ca89-def5-4576-b792-0237d0fdd5e0)
+![gobuster fuzzing](https://github.com/user-attachments/assets/53042682-8d30-463e-87b2-1447df299489)
 
 - `dir`: Modo de descubrimiento de directorios y archivos
 - `-u`: Dirección URL
@@ -110,23 +108,23 @@ Podemos ver que en ambos casos se ha descubierto el directorio `images`, vamos a
 curl -sL -X GET http://172.17.0.2/images
 ~~~
 
-![curl a images](https://github.com/user-attachments/assets/420b7b6a-49e1-4974-a065-b355df4adb70)
+![curl a images](https://github.com/user-attachments/assets/7a09eafc-ab53-485c-9079-72c92a91e74c)
 
 - `-s`: No mostrar progreso o error de la solicitud
 - `-L`: Habilitar el redireccionamiento
 - `-X`: Especificar el método HTTP a usar
 
-![dir images](https://github.com/user-attachments/assets/08516d57-27ed-4450-8980-9ba05ea270ea)
+![dir images](https://github.com/user-attachments/assets/502fede3-bd5b-440d-97ab-02620d42bbe3)
 
 Vemos un archivo  `agua_ssh.jpg`, procedemos a traerla a nuestra máquina y ver de qué se trata
 
-![imagen_ssh](https://github.com/user-attachments/assets/556f2300-6add-4d04-98da-6bbc0d9fee5a)
+![imagen_ssh](https://github.com/user-attachments/assets/8757624b-9779-4469-af7c-4b72bf5c5fcc)
 
 ~~~ bash
 wget http://aguademayo.local/images/agua_ssh.jpg
 ~~~
 
-![wget agua_ssh](https://github.com/user-attachments/assets/803c1f9c-24bf-43bd-8dfb-58266a4caf44)
+![wget agua_ssh](https://github.com/user-attachments/assets/90bbcbd2-1463-4918-a107-7b0b448d23b3)
 
 El nombre del archivo `agua_ssh.jpg` me parece un tanto raro, ya que contiene `ssh` en el nombre, esto me hace creer que `agua` es un usuario válido en la máquina.
 
@@ -138,7 +136,8 @@ Si hacemos un análisis del archivo o imprimimos los caracteres de la imagen, no
 exiftool agua_ssh.jpg
 ~~~
 
-![exiftool_analysis](https://github.com/user-attachments/assets/4e78b1f4-d6fe-45f9-8323-cf569c367a3a)
+![exiftool_analysis](https://github.com/user-attachments/assets/69759702-ede8-411b-bc90-af525c59fce0)
+
 
 ## Strings
 
@@ -146,7 +145,8 @@ exiftool agua_ssh.jpg
 strings agua_ssh.jpg
 ~~~
 
-![listar caracteres](https://github.com/user-attachments/assets/172cee99-b21e-4a5e-a068-d21d51c27bb1)
+![listar caracteres](https://github.com/user-attachments/assets/8aba8f9d-253a-4533-a0e2-1528cdcaa042)
+
 
 # Intrusión
 ---
@@ -154,16 +154,16 @@ strings agua_ssh.jpg
 
 Si vemos el código fuente podemos ver algo inusual al final del todo en un comentario HTML
 
-![web codigo raro](https://github.com/user-attachments/assets/754735ed-c5d7-4a4d-a27d-9089fe0cb78c)
+![web codigo raro](https://github.com/user-attachments/assets/467905dc-b906-47e8-9f9b-a92ebbefd7df)
 
 Como no sabía a qué me enfrentaba, lo primero que hice fue buscar este comentario HTML en Google
 
-![decode ](https://github.com/user-attachments/assets/3553fd74-45b7-49b4-beea-f34248f4f852)
+![decode ](https://github.com/user-attachments/assets/a8bfb2fb-b654-494a-bb43-81f6d1be466a)
 
 Podemos ver que hay un mensaje escrito en lenguaje Brainfuck, así que lo decodificaremos con ayuda de esta web `https://dcode.fr/brainfuck-language`
 **No olvidemos quitar los caracteres del comentario HTML** (`<!--` y `-->`)
 
-![decrypt](https://github.com/user-attachments/assets/df50a32c-4c09-421c-9978-ec6588f284b6)
+![decrypt](https://github.com/user-attachments/assets/0d8e55e6-bd5e-4690-b69a-3f77d109afc4)
 
 Vemos que el mensaje escondido se trata de la palabra `bebeaguaqueessano`, quizá sea la contraseña del usuario `agua`, por lo que probamos conectarnos por `ssh`
 
@@ -171,7 +171,7 @@ Vemos que el mensaje escondido se trata de la palabra `bebeaguaqueessano`, quiz�
 ssh agua@aguademayo.local
 ~~~
 
-![entramos por ssh](https://github.com/user-attachments/assets/57f14f20-8ec4-4b5c-8c5b-7069fef58f26)
+![entramos por ssh](https://github.com/user-attachments/assets/d00de753-2e0c-4d32-b543-4c7da29f1fb8)
 
 
 # Escalada de privilegios
@@ -192,7 +192,7 @@ Primeramente veremos si tenemos privilegios `sudo` con el siguiente comando
 sudo -l
 ~~~
 
-![sudo -l](https://github.com/user-attachments/assets/6247d06c-073c-4cd7-83e7-cb47e2937436)
+![sudo -l](https://github.com/user-attachments/assets/4c4df56f-36ed-4d14-87f8-5df9ce7673c0)
 
 - `-l`: Enumerar los comandos permitidos (o prohibidos) invocables por el usuario en la máquina actual
 
@@ -203,13 +203,13 @@ Existe `bettercap` en la máquina y podemos ejecutarlo sin proporcionar contrase
 sudo bettercap
 ~~~
 
-![exec bettercap with sudo](https://github.com/user-attachments/assets/25a8d1f5-e0ed-4edf-a324-98bf0e0f4117)
+![exec bettercap with sudo](https://github.com/user-attachments/assets/8b2b3182-7951-491f-a10f-8ef29cd2139e)
 
 Veamos el panel de ayuda con el comando `help`
 
-![bettercap help](https://github.com/user-attachments/assets/89745db9-44c7-4fe0-bdf9-01d5aa8921ed)
+![bettercap help](https://github.com/user-attachments/assets/3752382d-c7d9-4f66-acbb-784d1a8385f3)
 
-![help bettercap](https://github.com/user-attachments/assets/b9baaa72-5204-45cd-9db5-5b669e854442)
+![help bettercap](https://github.com/user-attachments/assets/42e3730f-aa2b-414c-8185-d124b5e4cd7b)
 
 
 ## SUID Privilege Escalation
@@ -226,7 +226,7 @@ También podemos hacer esto con un solo comando con la opción `-eval`
 sudo bettercap -eval "! chmod u+s /bin/bash"
 ~~~
 
-![cambiar el privilegio onliner](https://github.com/user-attachments/assets/cf65544e-bbc4-4dec-82ea-d6254a4b22f5)
+![cambiar el privilegio onliner](https://github.com/user-attachments/assets/48db4ad6-d528-42c2-a14d-f0fd8c97b612)
 
 - `-eval`: Ejecutar un comando en la máquina
 
@@ -235,7 +235,7 @@ sudo bettercap -eval "! chmod u+s /bin/bash"
 
 Ahora supuestamente asignamos la capacidad de ejecutar `bash` como el usuario `root`, lo podemos verificar con el comando `ls -l /bin/bash` para listar los permisos.
 
-![bash permisions](https://github.com/user-attachments/assets/f71eca5a-5308-4a79-959a-9911ff63a2af)
+![bash permisions](https://github.com/user-attachments/assets/d3d00e95-9394-47b6-8d64-6bb444c6eae4)
 
 Así que ejecutamos `bash` como el propietario, y nos convertimos en el usuario `root`
 
@@ -245,5 +245,4 @@ bash -p
 
 - `-p`: Ejecutar como el usuario original
 
-
-![bash como root](https://github.com/user-attachments/assets/03f0db53-5972-460c-ba08-f43b512a6c12)
+![bash como root](https://github.com/user-attachments/assets/3bdbe0a3-ad67-4758-80ed-03c209b20d9b)

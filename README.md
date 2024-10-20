@@ -3,7 +3,31 @@
 
 Bienvenid@s 👋, soy Andrés y soy un estudiante autodidacta de ciberseguridad y hacking ético 💻📚. En este repositorio almacenaré todas las guías sobre resoluciones de máquinas de la plataforma de `Dockerlabs.es` 🐳. Tienes disponible la siguiente tabla de contenido con las respectivas guías clasificadas por dificultad, espero que te sirva de ayuda este aporte, si tienes algún comentario o sugerencia, no dudes en contactarme 💪. 
 
-
+<details>
+  <summary>Dificultades</summary>
+  <ol>
+    <li>
+      <a href="machines/Easy">Fácil</a>
+      <ul>
+        <li><a href="machines/Easy/Aguademayo - Easy.md">Aguademayo</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="machines/Medium">Medio</a>
+      <ul>
+        <li><a href="#prerequisites">Stranger</a></li>
+        <li><a href="#installation">Little Pivoting</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="machines/Hard">Difícil</a>
+      <ul>
+        <li><a href="#prerequisites">a</a></li>
+      </ul>
+    </li>
+    
+  </ol>
+</details>
 
 ## Lanzar el laboratorio
 
