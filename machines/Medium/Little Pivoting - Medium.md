@@ -163,7 +163,7 @@ done < $dict
 Ejecutaríamos el script de la siguiente forma
 
 ~~~ bash
-bash /brutesu.sh seller rockyou.txt # Suponiendo que tenemos el rockyou.txt en la misma carpeta
+bash brutesu.sh seller rockyou.txt # Suponiendo que tenemos el rockyou.txt en la misma carpeta
 ~~~
 
 ![Pasted image 20241016170346](https://github.com/user-attachments/assets/dfb9b319-b47a-451a-86c2-92f3b933c1f9)
