@@ -376,7 +376,7 @@ Vemos que existe un archivo `secret.php`, por lo que le echaremos un vistazo en 
 
 ![Pasted image 20241016114717](https://github.com/user-attachments/assets/91ef1539-6670-4256-8efa-31a98b770db1)
 
-Podemos pensar a primera vista que el usuario `mario` existe en la máquina Trust (`20.20.20.3`), por lo que podemos 
+Podemos pensar a primera vista que el usuario `mario` existe en la máquina Trust (`20.20.20.3`), por lo que podemos intentar un ataque de fuerza bruta para encontrar la contraseña de este usuario
 
 
 # Explotación 20.20.20.3 (Trust)
