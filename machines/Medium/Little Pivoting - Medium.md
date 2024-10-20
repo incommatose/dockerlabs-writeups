@@ -56,7 +56,7 @@ whatweb http://10.10.10.2
 Haremos `fuzzing` para descubrir directorios en el servidor web, para esto usaremos la herramienta `gobuster` utilizando un diccionario
 
 ~~~ bash
-gobuster dir http://10.10.10.2 -w /usr/share/seclists/Discovrey/Web-Content/directory-list-2.3-medium.txt
+gobuster dir http://10.10.10.2 -w /usr/share/seclists/Discovrey/Web-Content/directory-list-2.3-medium.txt -t 200 -x php,html,xml,txt
 ~~~
 
 ![gobuster_1](https://github.com/user-attachments/assets/8d09b245-e3b8-4957-acf2-ab08c72a91b3)
