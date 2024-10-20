@@ -408,7 +408,7 @@ proxychains ssh mario@20.20.20.3
 
 ## Salto a la 20.20.20.3 (Socat)
 
-Podemos usar la herramienta `socat` para reenviar el tráfico desde `10.10.10.2` hasta la máquina `20.20.20.3`
+Podemos usar la herramienta `socat` para acceder por `ssh` desde nuestra máquina (`10.10.10.1`) a la máquina Trust `20.20.20.3` aplicando un port forwarding para el servicio `ssh`
 
 Primero nos descargamos el binario compilado de `socat`, luego lo compartimos con python
 
