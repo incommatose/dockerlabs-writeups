@@ -1,6 +1,4 @@
 
-#DockerLabs #WriteUps #Hacking
-
 >[!NOTE] Habilidades: 
 > Wordpress Fuzzing, CVE-2023-6063 - (Time Based SQL Injection), Broken Access Control, Wordpress Template Remote Code Execution, Command Injection, Python Capability `cap_setuid` Local Privilege Escalation
 
