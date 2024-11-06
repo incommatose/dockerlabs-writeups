@@ -17,12 +17,13 @@ Bienvenid@s 👋, soy Andrés y soy un estudiante autodidacta de ciberseguridad 
       <ul>
         <li><a href="#stranger">Stranger</a></li>
         <li><a href="machines/Medium/Little Pivoting - Medium.md">Little Pivoting</a></li>
+        <li><a href="machines/Medium/Bruteshock - Medium.md">Bruteshock</a></li>
       </ul>
     </li>
     <li>
       <a href="machines/Hard">Difícil</a>
       <ul>
-        <li><a href="#prerequisites">a</a></li>
+        <li><a href="machines/Hard/Norc - Hard.md">NorC</a></li>
       </ul>
     </li>
     
