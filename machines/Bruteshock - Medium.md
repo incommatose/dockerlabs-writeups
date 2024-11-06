@@ -1,7 +1,7 @@
 #DockerLabs #WriteUps #Hacking
 
 >[!NOTE] Habilidades: 
-> Brute Force Attack (Login Page),  ShellShock Remote Code Execution  
+> Brute Force Attack (Login Page),  ShellShock Remote Code Execution, User Shadow Hash Cracking using John, Bash `-eq` Comparison Privilege Escalation, Exim using Privilege escalation (Sudo), Dos2unix Privilege Escalation abusing Write Permissions (Sudo) 
 
 ## Lanzar el laboratorio
 
