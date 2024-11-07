@@ -85,7 +85,7 @@ Nos reporta un error `403`, esto quiere decir que no estamos autorizados a ver e
 
 ![Pasted image 20241105093652](https://github.com/user-attachments/assets/95ded6cd-0a2d-43ae-ab25-073af7ee93c8)
 
-Esto ocurre porque se cuando iniciamos por primera vez no nos carga la cookir `cookie` de PHP (`PHPSESSID`) 
+Esto ocurre porque se cuando iniciamos por primera vez no nos carga la `cookie` de PHP (`PHPSESSID`) 
 
 ![Pasted image 20241105093949](https://github.com/user-attachments/assets/c56a8b70-664c-484b-adc5-445f740d6aea)
 
