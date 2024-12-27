@@ -15,7 +15,7 @@ Bienvenid@s 👋, soy Andrés y soy un estudiante autodidacta de ciberseguridad 
     <li>
       <a href="machines/Medium">Medio</a>
       <ul>
-        <li><a href="#stranger">Stranger</a></li>
+        <li><a href="machines/Medium/Stranger - Medium.md">Stranger</a></li>
         <li><a href="machines/Medium/Little Pivoting - Medium.md">Little Pivoting</a></li>
         <li><a href="machines/Medium/Bruteshock - Medium.md">Bruteshock</a></li>
       </ul>
